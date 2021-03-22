@@ -100,6 +100,9 @@ module.exports = {
           {
             exclude: /\.(html|css|js|img|jpg|png|gif)$/,
             loader: 'file-loader',
+            options: {
+              outputPath: 'media',
+            }
           },
         ]
       }
@@ -126,15 +129,5 @@ module.exports = {
   // 模式
   // 生产环境下会自动压缩js UglifyPligin
   mode: 'development',
-  devServer: {
-    // 项目构建后路径
-    contentBase: resolve(__dirname, 'build'),
-    // 启动gzip压缩
-    compress: true,
-    // 端口号
-    port: 3000,
-    // 自动打开浏览器
-    open: true,
-  },
   devtool: 'source-map',
 };
