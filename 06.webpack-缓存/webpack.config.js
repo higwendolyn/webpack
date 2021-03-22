@@ -24,7 +24,7 @@ const commonCssLoader = [
 module.exports = {
   entry: './src/js/index.js',
   output: {
-    filename: 'js/built.js',
+    filename: 'js/built.[hash:10].js',
     path: resolve(__dirname, 'build'),
   },
   module: {
@@ -121,7 +121,7 @@ module.exports = {
       },
     }),
     new MiniCssExtractPlugin({
-      filename: 'css/built.css',
+      filename: 'css/built.[hash:10].css',
     }),
     // 压缩css
     new OptimizeCssAssetsWebpackPlugin(),

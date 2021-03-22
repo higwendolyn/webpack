@@ -1282,7 +1282,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_array_reduce_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_reduce_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _css_index_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../css/index.css */ "./src/css/index.css");
 
-// eslint-disable-next-line
 
 
 function sum() {
@@ -1302,4 +1301,4 @@ console.log(sum(1, 2, 3, 4));
 
 /******/ })()
 ;
-//# sourceMappingURL=built.js.map
+//# sourceMappingURL=built.b0251405ff.js.map
