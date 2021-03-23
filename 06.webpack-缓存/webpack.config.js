@@ -14,7 +14,6 @@ const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plug
  *      问题: js和css的值还是一样的，因为css是在js中被引入的，所以同属于一个chunk
  *    contenthash: 根据文件的内容生成hash值，不同的文件hash值一定不一样
  *    ---> 让代码上线运行缓存更好使用
- *  
  */
 
 // 设置node环境变量
@@ -29,6 +28,7 @@ const commonCssLoader = [
     options: {
       postcssOptions: {
         plugins: [
+          // eslint-disable-next-line
           [require('postcss-preset-env')()],
         ],
       },
@@ -117,10 +117,10 @@ module.exports = {
             loader: 'file-loader',
             options: {
               outputPath: 'media',
-            }
+            },
           },
-        ]
-      }
+        ],
+      },
     ],
   },
   // plugins 的配置
