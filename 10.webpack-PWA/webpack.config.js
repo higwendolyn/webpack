@@ -35,20 +35,15 @@ module.exports = {
   },
   module: {
     rules: [
-      // 语法检查：eslint-loader eslint
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        // 执行优先
         enforce: 'pre',
         loader: 'eslint-loader',
         options: {
-          // 自动修复eslint的错误
           fix: true,
         },
       },
-      // 以下loader只会处理一个
-      // 注意：不能有两个配置处理同一种类型文件
       {
         oneOf: [
           {
@@ -65,18 +60,14 @@ module.exports = {
             use: {
               loader: 'babel-loader',
               options: {
-                // 预设：指示babel做怎样的兼容性处理
                 presets: [
                   [
                     '@babel/preset-env',
                     {
-                      // 按需加载
                       useBuiltIns: 'usage',
-                      // 指定corejs版本
                       corejs: {
                         version: 3,
                       },
-                      // 指定兼容性做到哪个版本浏览器
                       targets: {
                         chrome: '60',
                         firefox: '60',
@@ -87,7 +78,6 @@ module.exports = {
                     },
                   ],
                 ],
-                // 开启缓存，第二次构建才会读取缓存
                 cacheDirectory: true,
                 plugins: ['@babel/plugin-transform-runtime'],
               },
@@ -118,11 +108,8 @@ module.exports = {
   plugins: [
     new HTMLWeboackPlugin({
       template: './src/index.html',
-      // 压缩html代码
       minify: {
-        // 移除空格
         collapseWhitespace: true,
-        // 移除注释
         removeComments: true,
       },
     }),

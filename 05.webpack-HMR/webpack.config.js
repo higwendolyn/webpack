@@ -20,7 +20,6 @@ module.exports = {
   },
   module: {
     rules: [
-      // loader的配置
       {
         test: /\.less$/,
         use: ['style-loader', 'css-loader', 'less-loader'],
@@ -38,12 +37,10 @@ module.exports = {
           name: '[hash:10].[ext]',
         },
       },
-      // 处理html中的图片资源
       {
         test: /\.html$/,
         loader: 'html-loader',
       },
-      // 处理其他资源
       {
         exclude: /\.(html|css|js|img|jpg|png|gif)$/,
         loader: 'file-loader',
@@ -56,8 +53,6 @@ module.exports = {
       template: './src/index.html',
     }),
   ],
-  // 模式
-  // 生产环境下会自动压缩js UglifyPligin
   mode: 'development',
   devServer: {
     // 项目构建后路径

@@ -3,11 +3,6 @@ const HTMLWeboackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
-/**
- * PWA：渐进式网络开发应用程序（离线可访问）
- *    workbox --> workbox-webpack-plugin
- */
-
 // 设置node环境变量
 process.env.NODE_ENV = 'production';
 
@@ -35,7 +30,6 @@ module.exports = {
   },
   module: {
     rules: [
-      // 语法检查：eslint-loader eslint
       {
         test: /\.js$/,
         exclude: /node_modules/,
@@ -47,8 +41,6 @@ module.exports = {
           fix: true,
         },
       },
-      // 以下loader只会处理一个
-      // 注意：不能有两个配置处理同一种类型文件
       {
         oneOf: [
           {
@@ -68,27 +60,23 @@ module.exports = {
                * 进程启动大概为600ms，进程通信也有开销
                * 只有工作消耗时间比较长，才需要多进程打包
               */
-             {
-               loader: 'thread-loader',
-               options: {
-                 workers: 2, // 进程2个
-               }
-             },
+              {
+                loader: 'thread-loader',
+                options: {
+                  workers: 2, // 进程2个
+                }
+              },
               {
                 loader: 'babel-loader',
                 options: {
-                  // 预设：指示babel做怎样的兼容性处理
                   presets: [
                     [
                       '@babel/preset-env',
                       {
-                        // 按需加载
                         useBuiltIns: 'usage',
-                        // 指定corejs版本
                         corejs: {
                           version: 3,
                         },
-                        // 指定兼容性做到哪个版本浏览器
                         targets: {
                           chrome: '60',
                           firefox: '60',
@@ -99,7 +87,6 @@ module.exports = {
                       },
                     ],
                   ],
-                  // 开启缓存，第二次构建才会读取缓存
                   cacheDirectory: true,
                   plugins: ['@babel/plugin-transform-runtime'],
                 },
@@ -131,11 +118,8 @@ module.exports = {
   plugins: [
     new HTMLWeboackPlugin({
       template: './src/index.html',
-      // 压缩html代码
       minify: {
-        // 移除空格
         collapseWhitespace: true,
-        // 移除注释
         removeComments: true,
       },
     }),
@@ -145,12 +129,6 @@ module.exports = {
     // 压缩css
     new OptimizeCssAssetsWebpackPlugin(),
     new WorkboxWebpackPlugin.GenerateSW({
-      /**
-       * 1. 帮助 serviceworker 快速启动
-       * 2. 删除旧的 serviceworker
-       * 
-       * 生成一个 serviceworker 配置文件~
-       */
       clientsClaim: true,
       skipWaiting: true
     }),

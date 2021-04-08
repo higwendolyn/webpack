@@ -17,15 +17,11 @@ module.exports = {
     filename: 'js/[name].[contenthash:10].js',
     path: resolve(__dirname, 'build'),
   },
-  // plugins 的配置
   plugins: [
     new HTMLWeboackPlugin({
       template: './src/index.html',
-      // 压缩html代码
       minify: {
-        // 移除空格
         collapseWhitespace: true,
-        // 移除注释
         removeComments: true,
       },
     }),
